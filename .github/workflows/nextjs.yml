@@ -23,3 +23,11 @@ jobs:
       - run: source ~/.nvm/nvm.sh
       - run: npm install
       - run: npm run build
+      - name: Build and push Docker Image
+
+uses: mr-smithers-excellent/docker-build-push@v6
+with:
+  image: rohed85/my-app
+  registry: docker.io
+  username: ${{ secrets.DOCKER_USERNAME }}
+  password: ${{ secrets.DOCKER_PASSWORD }}
