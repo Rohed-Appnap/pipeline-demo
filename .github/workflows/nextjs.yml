@@ -31,11 +31,14 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD}}
 
-      - name: Build and Push Docker Image
-        uses: mr-smithers-excellent/docker-build-push@v6
-        with:
-          image: rohed85/my-app
-          registry: docker.io
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Get current date 
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d--%M-%S')"
+
+
+      - name: Build docker image
+        run: docker build . --file Dockerfile --tag ruhulinfo/myapp:${{ steps.date.outputs.date }}
+      
+      - name: Push docker image
+        run: docker push ruhulinfo/myapp:${{ steps.date.outputs.date }}
       
