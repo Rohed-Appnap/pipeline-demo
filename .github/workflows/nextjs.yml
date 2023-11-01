@@ -38,7 +38,6 @@ jobs:
 
 
       - name: Build docker image
-        if: ${{ success() }}
         run: docker build . --file Dockerfile --tag rohed85/my-app:${{ steps.date.outputs.date }}
       
 
@@ -47,7 +46,6 @@ jobs:
 
 
         - name: Develop Build Status
-        if: ${{ failure() }}
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_COLOR: ${{ job.status }}
