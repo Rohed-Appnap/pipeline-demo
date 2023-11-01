@@ -41,9 +41,11 @@ jobs:
         if: ${{ success() }}
         run: docker build . --file Dockerfile --tag rohed85/my-app:${{ steps.date.outputs.date }}
       
+
       - name: Push docker image
         if: ${{ success() }}
         run: docker push rohed85/my-app:${{ steps.date.outputs.date }}
+
 
         - name: Develop Build Status
         if: ${{ failure() }}
