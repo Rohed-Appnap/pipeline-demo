@@ -43,7 +43,6 @@ jobs:
       
 
       - name: Push docker image
-        if: ${{ success() }}
         run: docker push rohed85/my-app:${{ steps.date.outputs.date }}
 
 
