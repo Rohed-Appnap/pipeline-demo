@@ -37,8 +37,8 @@ jobs:
 
 
       - name: Build docker image
-        run: docker build . --file Dockerfile --tag ruhulinfo/myapp:${{ steps.date.outputs.date }}
+        run: docker build . --file Dockerfile --tag rohed85/my-app:${{ steps.date.outputs.date }}
       
       - name: Push docker image
-        run: docker push ruhulinfo/myapp:${{ steps.date.outputs.date }}
+        run: docker push rohed85/my-app:${{ steps.date.outputs.date }}
       
