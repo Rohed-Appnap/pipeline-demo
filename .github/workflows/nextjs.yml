@@ -36,11 +36,6 @@ jobs:
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
 
 
-      - name: Get current date 
-        id: date
-        run: echo "::set-output name=date::$(date +'v1.'+%m')"
-
-
       - name: Build docker image
         run: docker build . --file Dockerfile --tag rohed85/my-app:v1.x
 
