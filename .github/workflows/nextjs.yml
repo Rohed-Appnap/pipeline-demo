@@ -26,11 +26,11 @@ jobs:
       - run: npm run build
 
       - name: Docker Login
-        with:
+        env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: docker login -u $DOCKER_USERNAME --password-stdin
-
+        
 
       - name: Build docker image
         run: docker build . --file Dockerfile --tag rohed85/my-app:v1.x
