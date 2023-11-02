@@ -19,13 +19,12 @@ jobs:
         with:
           path: .
 
-    
-
-      - name: Build docker image
-        run: docker build -t ghcr.io/rohed-appnap/my-docker-image:${{ steps.get-version.outputs.version }} .
-
-      - name: Push docker image
-        run: docker push ghcr.io/rohed-appnap/my-docker-image:${{ steps.get-version.outputs.version }}
+      - name: Log in to the github container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN}}
 
 
         - name: Set up Docker Buildx
@@ -33,7 +32,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository }}/dashboard:${{ steps.get-version.outputs.version }}
+          tags: ghcr.io/${{ github.repository }}/my-docker-image:${{ steps.get-version.outputs.version }}
         env:
           DOCKER_BUILDKIT: 1
           GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
