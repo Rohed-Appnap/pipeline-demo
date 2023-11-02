@@ -27,7 +27,7 @@ jobs:
           password: ${{ secrets.PASS_TOKEN }}
 
       - name: Build docker image
-        run: docker build -t ghcr.io/${{ github.repository_owner }}/my-docker-image:${{ steps.get-version.outputs.version }} .
+        run: docker build -t ghcr.io/rohed-appnap/my-docker-image:${{ steps.get-version.outputs.version }} .
 
       - name: Push docker image
-        run: docker push ghcr.io/${{ github.repository_owner }}/my-docker-image:${{ steps.get-version.outputs.version }}
+        run: docker push ghcr.io/rohed-appnap/my-docker-image:${{ steps.get-version.outputs.version }}
