@@ -38,15 +38,15 @@ jobs:
 
       - name: Get current date 
         id: date
-        run: echo "::set-output name=date::$(date +'%m')"
+        run: echo "::set-output name=date::$(date +'v1.'+%m')"
 
 
       - name: Build docker image
-        run: docker build . --file Dockerfile --tag rohed85/my-app:${{ steps.date.outputs.date }}${{ env.IMAGE_TAG }}
+        run: docker build . --file Dockerfile --tag rohed85/my-app:v1.x
 
       
       - name: Push docker image
-        run: docker push rohed85/my-app:${{ steps.date.outputs.date }}${{ env.IMAGE_TAG }}
+        run: docker push rohed85/my-app:v1.x
 
 
   
