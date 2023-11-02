@@ -5,6 +5,9 @@ on:
   push:
     branches: ["main"]
 
+env:
+  IMAGE_TAG: v1
+
 
 jobs:
   build:
@@ -34,8 +37,15 @@ jobs:
 
 
       - name: Build docker image
-        run: docker build . --file Dockerfile --tag rohed85/my-app:"v*.*.*-RC.*"
+        run: docker build . --file Dockerfile --tag rohed85/my-app:${{ env.IMAGE_TAG }}
       
       - name: Push docker image
-        run: docker push rohed85/my-app:"v*.*.*-RC.*"
+        run: docker push rohed85/my-app:v1.x
+
+      - name: Increment version
+        id: increment_version
+        run: echo "::set-env name=IMAGE_TAG::$((${{ env.IMAGE_TAG }} + 1))"
+
+      - name: Set new version as output
+        run: echo "::set-output name=NEW_VERSION::${{ env.IMAGE_TAG }}"
       
