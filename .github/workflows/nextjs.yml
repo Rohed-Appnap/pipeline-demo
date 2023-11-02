@@ -37,7 +37,7 @@ jobs:
 
 
       - name: Build docker image
-        run: docker build . --file Dockerfile --tag rohed85/my-app:${packageName}
+        run: docker build . --file Dockerfile --tag rohed85/my-app:${{packageName}}
 
       
       - name: Push docker image
