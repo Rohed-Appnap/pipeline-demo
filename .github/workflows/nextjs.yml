@@ -33,6 +33,6 @@ jobs:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
-          docker build -t ghcr.io/Rohed-Appnap/pipeline-demo/rohed85-my-app:${{ github.sha }} .
+          docker build -t ghcr.io/rohed-Appnap/pipeline-demo/rohed85-my-app:${{ github.sha }} .
           echo $DOCKER_PASSWORD | docker login ghcr.io -u $DOCKER_USERNAME --password-stdin
-          docker push ghcr.io/Rohed-Appnap/pipeline-demo/rohed85-my-app:${{ github.sha }}
+          docker push ghcr.io/rohed-Appnap/pipeline-demo/rohed85-my-app:${{ github.sha }}
