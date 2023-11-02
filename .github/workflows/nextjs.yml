@@ -34,8 +34,8 @@ jobs:
 
 
       - name: Build docker image
-        run: docker build . --file Dockerfile --tag rohed85/my-app:v1.x
+        run: docker build . --file Dockerfile --tag rohed85/my-app:"v*.*.*-RC.*"
       
       - name: Push docker image
-        run: docker push rohed85/my-app
+        run: docker push rohed85/my-app:"v*.*.*-RC.*"
       
