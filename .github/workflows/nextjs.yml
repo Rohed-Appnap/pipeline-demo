@@ -28,8 +28,11 @@ jobs:
         working-directory: ${{ github.workspace }}
 
 
-      - name: Build docker image
-        run: docker build . --file Dockerfile --tag rohed85/my-app:${{ steps.get-version.outputs.version }}
-
-      - name: Push docker image
-        run: docker push rohed85/my-app:${{ steps.get-version.outputs.version }}
+      - name: Build and push Docker image
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          docker build -t ghcr.io/Rohed-Appnap/pipeline-demo/rohed85-my-app:${{ github.sha }} .
+          echo $DOCKER_PASSWORD | docker login ghcr.io -u $DOCKER_USERNAME --password-stdin
+          docker push ghcr.io/Rohed-Appnap/pipeline-demo/rohed85-my-app:${{ github.sha }}
