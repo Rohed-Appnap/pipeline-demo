@@ -40,7 +40,7 @@ jobs:
         run: docker build . --file Dockerfile --tag rohed85/my-app:${{ env.IMAGE_TAG }}
       
       - name: Push docker image
-        run: docker push rohed85/my-app:v1.x
+        run: docker push rohed85/my-app:${{ env.IMAGE_TAG }}
 
       - name: Increment version
         id: increment_version
