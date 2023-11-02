@@ -32,10 +32,14 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD}}
 
+      - name: Get current date 
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d--%M-%S')"
+
 
       - name: Build docker image
-        run: docker build . --file Dockerfile --tag amarpet:v1.x rohed85/my-app
+        run: docker build . --file Dockerfile --tag rohed85/my-app:v1.x
       
       - name: Push docker image
-        run: docker push rohed85/my-app
+        run: docker push rohed85/my-app:v1.x
       
