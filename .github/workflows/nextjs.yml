@@ -42,11 +42,11 @@ jobs:
 
 
       - name: Build docker image
-        run: docker build . --file Dockerfile --tag rohed85/my-app:${{ steps.date.outputs.date }}
+        run: docker build . --file Dockerfile --tag rohed85/my-app:${{ steps.date.outputs.date }}${{ env.IMAGE_TAG }}
 
       
       - name: Push docker image
-        run: docker push rohed85/my-app:${{ steps.date.outputs.date }}
+        run: docker push rohed85/my-app:${{ steps.date.outputs.date }}${{ env.IMAGE_TAG }}
 
 
   
